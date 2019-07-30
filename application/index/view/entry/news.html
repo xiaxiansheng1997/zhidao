@@ -1,0 +1,43 @@
+{include file="public/header" /}
+<div class="center_blank"></div>
+    <div style="width: 1000px;margin: auto;">
+        <div class="center_gga" style="float:left">
+            <div class="center_gga_1">资讯分类</div>
+            <div class="center_ggc">
+                {foreach name="news_type" item="vo" key="k" }
+                <a href="{:url('list_info/news/'.$k)}">{$vo}</a>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+<div class="center_blank"></div>
+<!-- 内容开始 -->
+<div class="nr">  
+          <div class="bft_f">
+          	<div class="bft_f_1">
+            	<ul>
+                	<li>标题</li>
+                    <li>分类</li>
+                    <li>点赞数</li>
+                    <li>阅读人数</li>
+                    <li>发布时间</li>
+                </ul>
+            </div>
+            {foreach $news as $vo}
+            <div class="bft_f_2">
+            	<ul>
+                	<li><span><a href="{:url('detail/news/'.$vo.nid)}">{$vo.title|mb_substr=###,0,10,'utf-8'}...</a></span></li>
+                     {foreach name="news_type" item="val" key="k" }
+                     {eq name="vo.type" value="$k"}<li>{$val}</li>{/eq}
+                     {/foreach}
+                    <li>{$vo.click_up}</li>
+                    <li>{$vo.r_count}</li>
+                    <li>{$vo.create_time}</li>
+                </ul>
+            </div>
+            {/foreach}
+            <div class="bft_f_3">
+            	{$news->render()}
+            </div>
+          </div>
+          {include file="public/footer" /}

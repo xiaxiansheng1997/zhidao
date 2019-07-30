@@ -1,0 +1,137 @@
+
+<!-- top内容开始 -->
+{include file="public/header" /}
+<!-- top内容结束 -->
+
+<!-- 公告和介绍开始  -->
+<div class="center_a">
+	<div class="center_blank"></div>
+	<div class="center_b">
+    	<div class="center_gg">
+        	<div class="center_gga">
+            	<div class="center_gga_1">高校资讯</div>
+                <div class="more"><a href="{:url('list_info/news/0')}">更多>></a></div>
+            </div>
+            <div class="center_ggb">
+            	<ul>
+                    {foreach $last_news as $vo}
+                	<li><a href="{:url('detail/news/'.$vo.nid)}"><span>{$vo.create_time}</span>{$vo.title}</a></li>
+                    {/foreach}
+                </ul>
+            </div>
+    	</div>
+        
+        <div class="center_js">
+        	<div class="center_gga">网站介绍</div>
+            <div class="banner">
+            	<!--  banner图片开始 -->
+                <div class="main_visual">
+                	<div class="flicking_con">
+                		<a href="#">1</a>
+                		<a href="#">2</a>
+                		<a href="#">3</a>
+                		<a href="#">4</a>	
+                	</div>
+                	<div class="main_image">
+                		<ul>
+                            {foreach $imgs as $vo}
+                            <li><img src="__PUBLIC__/uploads/{$vo.img}" width="353" height="355"></li>
+                            {/foreach}
+                		</ul>
+                		<a href="javascript;" id="btn_prev"></a>
+                		<a href="javascript;" id="btn_next"></a>
+                	</div>
+                </div>
+                <!--  banner图片结束 -->
+            </div>
+         </div>
+ 
+    </div>
+</div>
+<!-- 公告和介绍结束  -->
+<!-- 内容开始 -->
+<div class="nr">
+	<div class="newPos">
+    	<div class="newPos_a">最新职位</div>
+        <div class="newPos_b">
+        	<div class="newPos_b_img"><img src="__STATIC__/__IMG__/favicon.png" width="84" height="62" /></div>
+            <div class="newPos_b_title"><a href="{:url('detail/jobs/'.$jobs[0]['rid'])}"><p>招聘职位：{$jobs[0]['work']}</p><p>薪资：<span>{$jobs[0]['salary']}</span></p>  <p>工作人数：{$jobs[0]['count']}</p></a></div>
+        </div>
+        <div class="newPos_c">
+        	<ul>
+                {foreach name="jobs" item="vo" key="k"}
+                {neq name="k" value="0"}
+            	<a href="{:url('detail/jobs/'.$vo.rid)}"><li><span>{$vo.work_time}</span>· {$vo.work}</li></a>
+                {/neq}
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+    
+    <div class="bang">
+    	<!-- 标签切换开始 -->
+        <!-- <div class="dengluh">欢迎<span>帮主</span>驾到！！！</div>
+        <div class="zhuce_dl">
+                    	<div class="zhuce_name">
+                        	<div class="zhuce_balnk"></div>
+                            <div class="zhuce_balnk1"></div>
+                            <div class="dengluh_1">欢迎回来！<span>HelloJam</span></div>
+                            <div class="zhuce_balnk2"></div>
+                            <div class="zhuce_nam"><a href="index.html">退出</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="zc_xg.html">修改密码</a></div>
+                        </div>
+                    </div> -->
+        <img src="__STATIC__/__IMG__/banner.jpg" width="490" height="220">
+        <!-- 标签切换结束 -->
+    </div>
+    
+    <div class="newPos">
+    	<div class="newPos_a">最新二手物品</div>
+        <div class="newPos_b">
+        	<div class="newPos_b_img"><img src="__PUBLIC__/uploads/{$goods[0]['photo']}" width="84" height="62" /></div>
+            <div class="newPos_b_title"><a href="{:url('detail/goods/'.$goods[0]['gid'])}"><p>物品名称：{$goods[0]['name']}</p><p>物品价格：<span>{$goods[0]['price']}</span></p>  <p>交易类型：{$goods[0]['is_sell']==1?'卖出':'买入'}</p></a></div>
+        </div>
+        <div class="newPos_c">
+        	<ul>
+                {foreach name="goods" item="vo" key="k"}
+                {neq name="k" value="0"}
+                <a href="{:url('detail/goods/'.$vo.gid)}"><li><span>{$vo.create_time}</span>· {$vo.name}</li></a>
+                {/neq}
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+    <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
+    <!-- 搜索内容开始 -->
+    <!-- <div class="blank"></div>
+    <div class="search">
+    	<div class="search_blank"></div>
+        <div class="search_c"><input class="s_t" style="width:690px; height:17px; padding:8px; font-size:14px; color:#b8b8b8; letter-spacing:2px;" onblur="if(this.value==''){this.value='请输入职位，二手物品等关键词';this.style.color='#aaa'}" onfocus="if(this.value=='请输入职位，二手物品等关键字'){this.value='';this.style.color='#666'}" value="请输入职位，二手物品等关键字" name="keyword" /></div>
+        <div class="search_btn"><a href="bft_more.html"><img src="__STATIC__/__IMG__/search_btn.jpg" /></a></div>
+    </div> -->
+    <!-- 搜索内容结束 -->
+    
+
+	<!-- 帮众结束 -->
+    
+	<!-- 帮交结束 -->
+    <!-- 友情链接开始 -->
+    {include file="public/footer" /}
+	<!-- 底部内容结束 -->
+    
+</div>
+<!-- 内容结束 -->
+
+<!-- alpha div -->
+<div id="maskLayer" style="display:none;">
+<iframe id="maskLayer_iframe" frameBorder=0 scrolling=no style="filter:alpha(opacity=50)"></iframe>
+<div id="alphadiv" style="filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5"></div>
+	<div id="drag">
+		<h3 id="drag_h"></h3>
+		<div id="drag_con"></div><!-- drag_con end -->
+	</div>
+</div><!-- maskLayer end -->
+</div>
+<!-- alpha div end -->
+
+</body>
+</html>

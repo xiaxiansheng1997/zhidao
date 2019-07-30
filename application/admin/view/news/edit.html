@@ -1,0 +1,120 @@
+{include file="public/header" /}
+<!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item hidden-sm-down">
+                            
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    {include file="public/head" /}
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {include file="public/left" /}
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <ol class="breadcrumb">
+                            {foreach $breadcrumb as $vo} 
+                               {if condition="$vo.href eq ''"}
+                                 <li class="breadcrumb-item">{$vo.menu}</li>
+                               {else /}
+                                 <li class="breadcrumb-item"><a href="{$vo.href}">{$vo.menu}</a></li>
+                               {/if}
+                            {/foreach}
+                        </ol>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="container">
+                                  <h2>编辑</h2>
+                                  <form action="{:url('news/edit_handle')}" method="POST">
+                                    <input type="hidden" name="nid" value="{$info['nid']}">
+                                    <div class="form-group">
+                                      <label for="title">文章标题:</label>
+                                      <input type="text" class="form-control" name="title" placeholder="请输入标题" required="required" value="{$info['title']}">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="type">文章分类:</label>
+                                      <select class="form-control" id="sel1" name="type">
+                                        {foreach name="type" item="vo"} 
+                                            <option value="{$key}" {eq name="info['type']" value="$key"}selected{/eq}>{$vo}</option>
+                                        {/foreach}
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="content">文章内容:</label>
+                                      <div id="editor">
+                                        {$info['content']}
+                                      </div>  
+                                      <!-- <textarea id="text1" style="width:100%; height:200px;"></textarea> -->
+                                      <input type="hidden" name="content" id="text1">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">提交</button>&nbsp;&nbsp;<a href="{:url('news/index')}" class="btn btn-primary">返回</a>
+                                  </form>
+                                </div>              
+                                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <script src="__STATIC__/__JS__/wangEditor.min.js"></script>
+            {include file="public/footer" /}
+            
+<script type="text/javascript">
+        var E = window.wangEditor
+        var editor = new E('#editor')
+        var $text1 = $('#text1')
+        editor.customConfig.onchange = function (html) {
+            // 监控变化，同步更新到 textarea
+            $text1.val(html)
+        }
+        editor.create()
+        // 初始化 textarea 的值
+        $text1.val(editor.txt.html())
+    </script>

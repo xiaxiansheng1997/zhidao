@@ -1,0 +1,82 @@
+<!-- top内容开始 -->
+{include file="public/header" /}
+<!-- top内容结束 -->
+<div class="center_blank"></div>
+<!-- 公告和介绍开始  --><!-- 公告和介绍结束  -->
+<!-- 内容开始 -->
+<div class="nr">
+	
+    
+    <div class="bzz">
+    	<div class="center_gga">
+			<div class="center_gga_1">&nbsp;免费注册</div>
+		</div>
+        <div class="zc_a">
+        	<<div class="zc_left"><img src="__STATIC__/__IMG__/zc_1.jpg" usemap="#Map" border="0" />
+              <map name="Map" id="Map">
+                <area shape="rect" coords="261,17,335,41" href="{:url('web_login/login')}" />
+                <area shape="rect" coords="68,66,99,95" href="#" />
+                <area shape="rect" coords="111,67,146,96" href="#" />
+                <area shape="rect" coords="162,66,190,95" href="#" />
+              </map>
+       	  </div>
+          <form action="{:url('web_login/register_handle')}" method="POST" name="form">
+            <div class="zc_right">
+            	<div class=""><img src="__STATIC__/__IMG__/bzz_2.jpg" /></div>
+            	<div class="item">
+    				<label>用户名：&nbsp;</label>
+   				  <input type="text" name="nickname" />
+ 				</div>
+                <div class="item">
+    				<label>登录密码：</label>
+   				  <input type="password" name="password" />
+ 				</div>
+                <div class="item">
+    				<label>确认密码：</label>
+   				  <input type="password" name="checkpwd" />
+ 				</div>
+                <div class="item">
+    				<label>联系邮箱：</label>
+   				  <input type="text" name="email" />
+ 				</div>
+              <div class="item_a">
+   				<div class="item_a_1"><label>验&nbsp;证&nbsp;码：</label></div>
+   				<div class="item_a_2"><input type="text" name="verify" /></div>
+                <div class="item_a_2"><img id="verify_img" src="{:captcha_src()}" onclick="refreshVerify()" width="85" height="30" /></div>&nbsp;<a href="javascript:refreshVerify()">看不清？换一张</a>
+              </div>
+              <div class="item_b">
+              	<div class="item_b_1"></div>
+              	<a href="#" onclick="form.submit()"><img src="__STATIC__/__IMG__/zc_pic.jpg" /></a>
+              </div>
+          </div>
+        </form>
+        </div>
+    </div>
+
+    <!-- 友情链接开始 -->
+    {include file="public/footer" /}
+  <!-- 底部内容结束 -->
+    
+</div>
+<!-- 内容结束 -->
+
+<!-- alpha div -->
+<div id="maskLayer" style="display:none;">
+<iframe id="maskLayer_iframe" frameBorder=0 scrolling=no style="filter:alpha(opacity=50)"></iframe>
+<div id="alphadiv" style="filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5"></div>
+	<div id="drag">
+		<h3 id="drag_h"></h3>
+		<div id="drag_con"></div><!-- drag_con end -->
+	</div>
+</div><!-- maskLayer end -->
+</div>
+<!-- alpha div end -->
+<script>
+    function refreshVerify() {
+        var ts = Date.parse(new Date())/1000;
+        var img = document.getElementById('verify_img');
+        img.src = "/zhidao/public/index.php/captcha?id="+ts;
+    }
+</script>
+</body>
+</html>

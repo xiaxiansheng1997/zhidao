@@ -1,0 +1,48 @@
+{include file="public/header" /}
+<div class="center_blank"></div>
+<!-- 内容开始 -->
+<div class="nr">  
+			<div class="zzy_nr">
+				<div class="zzy">{$info.title}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 10px;">发布时间:{$info.create_time}</span></div>
+                <div class="zzy_1">
+                	<ul>
+                    	<li><span id="click_up">☆</span>&nbsp;{$info.click_up}点赞</li>
+                        <li><span id="click_down">¤</span>&nbsp;{$info.click_down}踩</li>
+                        <li><span>♥</span>&nbsp;{$info.r_count}次浏览</li>
+                        <li><span>♥</span>&nbsp;分类:{$info.type}</li>
+                    </ul>
+                </div>
+                <div class="zzy_5">
+                	{$info.content}
+                </div>
+			</div>
+            <div class="zzy_nra">
+            	<div class="zzy_6">最新文章</div>
+                <div class="zzy_7">
+                	<ul>
+                        {foreach $last as $vo}
+                        <li>
+                        	<a href="{:url('detail/news/'.$vo.nid)}">
+                            <p><span>{$vo.title|substr=0,70}...</span></p>
+                            <p>发布时间：{$vo.create_time}</p>
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $("#click_up").click(function(){
+                      $.get("{:url('home/click_up/'.$info['nid'])}",function(data,status){
+                        alert(data);
+                        location.reload(true);
+                      });
+                    });
+                $("#click_down").click(function(){
+                      $.get("{:url('home/click_down/'.$info['nid'])}",function(data,status){
+                        alert(data);
+                        location.reload(true);
+                      });
+                    });
+            </script>
+            {include file="public/footer" /}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Lowin</title>
+	<link rel="stylesheet" href="__STATIC__/__CSS__/auth.css">
+</head>
+<style type="text/css">
+.lowin .lowin-footer {
+	text-align: center;
+    margin: 400px 0;
+    font-size: 12px;
+    color: var(--color-semidark);
+    font-weight: 700;
+}
+</style>
+<body>
+	<div class="lowin">
+		<div class="lowin-brand">
+			<img src="__STATIC__/__IMG__/kodinger.jpg" alt="logo">
+		</div>
+		<div class="lowin-wrapper">
+			<div class="lowin-box lowin-login">
+				<div class="lowin-box-inner">
+					<form action="{:url('user/forgot_handle')}" method="POST" >
+						<p>Send email to continue</p>
+						<div class="lowin-group">
+							<label>Email <a href="#" class="login-back-link">find?</a></label>
+							<input type="text"  autocomplete="email" name="email" class="lowin-input">
+						</div>
+						<button class="lowin-btn login-btn" type="submit">
+							Send Email
+						</button>
+						<div class="text-foot">
+							return to login? <a href="{:url('user/login')}" class="register-link">Click</a>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	
+		<footer class="lowin-footer">
+			Make By Yu Jie Xia  @xiayujie 2019-04-01--2030-04-01
+		</footer>
+	</div>
+
+</body>
+</html>

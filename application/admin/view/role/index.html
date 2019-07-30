@@ -1,0 +1,128 @@
+{include file="public/header" /}
+<!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <!-- This is  -->
+                       <!--  <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item hidden-sm-down">
+                            <form class="app-search p-l-20">
+                                <input type="text" class="form-control" placeholder="搜索..."> <a class="srh-btn"><i class="ti-search"></i></a>
+                            </form>
+                        </li> -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    {include file="public/head" /}
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {include file="public/left" /}
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <ol class="breadcrumb">
+                            {foreach $breadcrumb as $vo} 
+                               {if condition="$vo.href eq ''"}
+                                 <li class="breadcrumb-item">{$vo.menu}</li>
+                               {else /}
+                                 <li class="breadcrumb-item"><a href="{$vo.href}">{$vo.menu}</a></li>
+                               {/if}
+                            {/foreach}
+                        </ol>
+                    </div>
+                    <div class="col-md-6 col-4 align-self-center">
+                        <a href="{:url('role/add')}" class="btn pull-right hidden-sm-down btn-success">添加</a>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#rid</th>
+                                                <th>角色名称</th>
+                                                <th>创建时间</th>
+                                                <th>更新时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {foreach $info as $v}
+                                            <tr>
+                                                <td>{$v.rid}</td>
+                                                <td>{$v.role_name}</td>
+                                                <td>{$v.create_time}</td>
+                                                <td>{$v.update_time}</td>
+                                                <td>{switch name="v.rid" }
+                                                        {case value="1"}编辑 | 删除 | 设置权限{/case}
+                                                        {case value="7"}编辑 | 删除 | <a href="{:url('role/auth/'.$v.rid)}">设置权限</a>{/case}
+                                                        {default /}<a href="{:url('role/edit/'.$v.rid)}">编辑</a> | <a href="{:url('role/delete/'.$v.rid)}" onclick='return del();'>删除</a> | <a href="{:url('role/auth/'.$v.rid)}">设置权限</a>
+                                                    {/switch}</td>
+                                            </tr>
+                                            {/foreach}
+                                        </tbody>
+                                    </table>
+                                    <nav aria-label="Page navigation">
+                                    {$info->render()}
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <script>
+function del()
+{
+  if(confirm("确定要删除吗？"))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+</script>
+            {include file="public/footer" /}
+

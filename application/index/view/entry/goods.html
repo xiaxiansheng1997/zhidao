@@ -1,0 +1,43 @@
+{include file="public/header" /}
+<div class="center_blank"></div>
+    <div style="width: 1000px;margin: auto;">
+        <div class="center_gga" style="float:left">
+            <div class="center_gga_1">物品分类</div>
+            <div class="center_ggc">
+                {foreach name="goods_type" item="vo" key="k" }
+                <a href="{:url('list_info/goods/'.$k)}">{$vo}</a>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+<div class="center_blank"></div>
+<!-- 内容开始 -->
+<div class="nr">  
+          <div class="bft_f">
+          	<div class="bft_f_1">
+            	<ul>
+                	<li>物品名称</li>
+                    <li>物品类型</li>
+                    <li>物品价格</li>
+                    <li>交易类型</li>
+                    <li>发布时间</li>
+                </ul>
+            </div>
+            {foreach $goods as $vo}
+            <div class="bft_f_2">
+            	<ul>
+                	<li><span><a href="{:url('detail/goods/'.$vo.gid)}">{$vo.name}</a></span></li>
+                     {foreach name="goods_type" item="val" key="k" }
+                     {eq name="vo.type" value="$k"}<li>{$val}</li>{/eq}
+                     {/foreach}
+                    <li>{$vo.price}</li>
+                    <li>{$vo.is_sell==1?'卖出':'买入'}</li>
+                    <li>{$vo.create_time}</li>
+                </ul>
+            </div>
+            {/foreach}
+            <div class="bft_f_3">
+            	{$goods->render()}
+            </div>
+          </div>
+          {include file="public/footer" /}

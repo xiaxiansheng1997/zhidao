@@ -1,0 +1,180 @@
+{include file="public/header" /}
+<!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <form class="app-search p-l-20" action="{:url('users/index')}" method="GET">
+                    <ul class="navbar-nav mr-auto mt-md-0 " style="width: 740px;">
+                        
+                        <!-- This is  -->
+                        <!-- <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li> -->
+                        <li class="nav-item hidden-sm-down">
+                            
+                                <div class="form-group"><input type="text" name="uid" class="form-control" placeholder="用户uid" value="{$uid}"></div>
+                                
+                                <!-- <a class="srh-btn"><i class="ti-search"></i></a> -->
+                            
+                        </li>
+                        <li class="nav-item hidden-sm-down">
+                            
+                                <div class="form-group"><input type="text" name="nickname" class="form-control" placeholder="用户昵称" value="{$nickname}"></div>
+                                
+                                <!-- <a class="srh-btn"><i class="ti-search"></i></a> -->
+                            
+                        </li>
+                        <li class="nav-item hidden-sm-down">
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name="user_type">
+                                    <option value="-1" {eq name="user_type" value="-1" }selected{/eq}>请选择</option>
+                                    <option value="1" {eq name="user_type" value="1" }selected{/eq}>普通用户</option>
+                                    <option value="2" {eq name="user_type" value="2" }selected{/eq}>管理员</option>
+                                </select>
+                            </div>
+                        </li>
+                        <button type="submit" class="btn btn-info" style="height: 38px;"><i class="ti-search"></i></button>
+                    </ul>
+                    </form>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    {include file="public/head" /}
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {include file="public/left" /}
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <ol class="breadcrumb">
+                            {foreach $breadcrumb as $vo} 
+                               {if condition="$vo.href eq ''"}
+                                 <li class="breadcrumb-item">{$vo.menu}</li>
+                               {else /}
+                                 <li class="breadcrumb-item"><a href="{$vo.href}">{$vo.menu}</a></li>
+                               {/if}
+                            {/foreach}
+                        </ol>
+                    </div>
+                    <div class="col-md-6 col-4 align-self-center">
+                        <a href="{:url('users/add')}" class="btn pull-right hidden-sm-down btn-success">添加</a>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table class="table text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>#uid</th>
+                                                <th>昵称</th>
+                                                <th>邮箱</th>
+                                                <th>用户状态</th>
+                                                <th>用户头像</th>
+                                                <th>用户类型</th>
+                                                <th>用户角色</th>
+                                                <th>最后登录ip</th>
+                                                <th>最后登录时间</th>
+                                                <th>冻结状态</th>
+                                                <th>激活状态</th>
+                                                <th>创建时间</th>
+                                                <th>更新时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {foreach $info as $v}
+                                            <tr>
+                                                <td>{$v.uid}</td>
+                                                <td>{$v.nickname}</td>
+                                                <td>{$v.email}</td>
+                                                <td>{switch name="v.status" }
+                                                        {case value="1"}启用{/case}
+                                                        {case value="2"}禁用{/case}
+                                                    {/switch}</td>
+                                                <td>{notempty name="v.avatar"}
+                                                    <img src="__PUBLIC__/uploads/{$v.avatar}" class="rounded" width="60" height="40" /> {/notempty}</td>
+                                                <td>{switch name="v.user_type" }
+                                                        {case value="1"}普通用户{/case}
+                                                        {case value="2"}管理员{/case}
+                                                    {/switch}</td>
+                                                <td>{$v.role_type}</td>
+                                                <td>{$v.last_login_ip}</td>
+                                                <td>{$v.last_login_time}</td>
+                                                <td>{switch name="v.is_freeze" }
+                                                        {case value="0"}未冻结{/case}
+                                                        {case value="1"}已冻结{/case}
+                                                    {/switch}</td>
+                                                <td>{switch name="v.is_active" }
+                                                        {case value="1"}已激活{/case}
+                                                        {case value="2"}未激活{/case}
+                                                    {/switch}</td>
+                                                <td>{$v.create_time}</td>
+                                                <td>{$v.update_time}</td>
+                                                <td>{neq name="v.role_type" value="超级管理员"}<a href="{:url('users/edit/'.$v.uid)}">编辑</a> | <a href="{:url('users/delete/'.$v.uid)}" onclick='return del();'>删除</a> | {switch name="v.status" }
+                                                        {case value="1"}<a href="{:url('users/disable/'.$v.uid)}">禁用</a>{/case}
+                                                        {case value="2"}<a href="{:url('users/enable/'.$v.uid)}">启用</a>{/case}
+                                                    {/switch}{/neq}</td>
+                                            </tr>
+                                            {/foreach}
+                                        </tbody>
+                                    </table>
+                                    <nav aria-label="Page navigation">
+                                    {$info->render()}
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <script>
+function del()
+{
+  if(confirm("确定要删除吗？"))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+</script>
+            {include file="public/footer" /}
+

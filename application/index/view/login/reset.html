@@ -1,0 +1,52 @@
+{include file="public/header" /}
+<div class="center_blank"></div>
+<!-- 公告和介绍开始  --><!-- 公告和介绍结束  -->
+<!-- 内容开始 -->
+<div class="nr">
+	
+    
+    <div class="bzz">
+    	<div class="center_gga">
+			<div class="center_gga_1">&nbsp;重置密码</div>
+		</div>
+        <div class="zc_a">
+        	<div class="zc_left"><img src="__STATIC__/__IMG__/zc_2.jpg" usemap="#Map" border="0" />
+              <map name="Map" id="Map">
+                <area shape="rect" coords="67,37,98,66" href="#" />
+                <area shape="rect" coords="111,36,146,65" href="#" />
+                <area shape="rect" coords="162,37,190,66" href="#" />
+              </map>
+       	  </div>
+            <div class="zc_right">
+              <form action="{:url('web_login/reset_handle')}" method="POST" name="form1">
+              <input type="hidden" name="uid" value="{$info.uid}">
+              <input type="hidden" name="token" value="{$token}">
+              <input type="hidden" name="email" value="{$info.email}">
+            	<div class="item_c">
+    				<label>邮箱</label>
+ 				</div>
+                <div class="item">
+   				  <input type="text"  value="{$info.email}" disabled="disabled" />
+ 				</div>
+              <div class="item_c">
+            <label>输入新密码</label>
+        </div>
+                <div class="item">
+            <input type="password" name="new_password" />
+        </div>
+        <div class="item_c">
+            <label>重新输入</label>
+        </div>
+                <div class="item">
+            <input type="password" name="check_password" />
+        </div>
+               
+              
+              <div class="item_b">
+              	<a href="javascript:document.form1.submit();"><img src="__STATIC__/__IMG__/qd.jpg" /></a>
+              </div>
+              </form>
+          </div>
+        </div>
+    </div>
+    {include file="public/footer" /}

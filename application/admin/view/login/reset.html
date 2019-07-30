@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Lowin</title>
+	<link rel="stylesheet" href="__STATIC__/__CSS__/auth.css">
+</head>
+<style type="text/css">
+.lowin .lowin-footer {
+	text-align: center;
+    margin: 600px 0;
+    font-size: 12px;
+    color: var(--color-semidark);
+    font-weight: 700;
+}
+</style>
+<body>
+	<div class="lowin">
+		<div class="lowin-brand">
+			<img src="__STATIC__/__IMG__/kodinger.jpg" alt="logo">
+		</div>
+		<div class="lowin-wrapper">
+			<div class="lowin-box lowin-login">
+				<div class="lowin-box-inner">
+					<form action="{:url('user/reset_handle')}" method="POST" >
+						<p>Reset your password</p>
+						<input type="hidden" name="uid" value="{$info.uid}">
+						<input type="hidden" name="token" value="{$token}">
+						<div class="lowin-group">
+							<label>Email <a href="#" class="login-back-link">reset?</a></label>
+							<input type="text"  autocomplete="email" name="email" class="lowin-input" value="{$info.email}">
+						</div>
+						<div class="lowin-group">
+							<label>Password <a href="#" class="login-back-link">reset?</a></label>
+							<input type="password"  autocomplete="new_password" name="new_password" class="lowin-input">
+						</div>
+						<div class="lowin-group">
+							<label>Check Password<a href="#" class="login-back-link">reset?</a></label>
+							<input type="password"  autocomplete="check_password" name="check_password" class="lowin-input">
+						</div>
+						<button class="lowin-btn login-btn" type="submit">
+							Submit to reset
+						</button>
+						<div class="text-foot">
+							return to login? <a href="{:url('user/login')}" class="register-link">Click</a>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	
+		<footer class="lowin-footer">
+			Make By Yu Jie Xia  @xiayujie 2019-04-01--2030-04-01
+		</footer>
+	</div>
+
+</body>
+</html>

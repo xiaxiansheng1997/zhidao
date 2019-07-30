@@ -1,0 +1,99 @@
+{include file="public/header" /}
+<!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item hidden-sm-down">
+                            
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    {include file="public/head" /}
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {include file="public/left" /}
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <ol class="breadcrumb">
+                            {foreach $breadcrumb as $vo} 
+                               {if condition="$vo.href eq ''"}
+                                 <li class="breadcrumb-item">{$vo.menu}</li>
+                               {else /}
+                                 <li class="breadcrumb-item"><a href="{$vo.href}">{$vo.menu}</a></li>
+                               {/if}
+                            {/foreach}
+                        </ol>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="container">
+                                  <h2>修改密码</h2>
+                                  <form action="{:url('person/changepwd_handle')}"  method="POST">
+                                    <input type="hidden" name="uid" value="{$userinfo.uid}">
+                                    <div class="form-group">
+                                      <label for="oldpwd">原始密码:</label>
+                                      <input type="password" class="form-control" name="oldpwd" placeholder="请输入原始密码" required="required" >
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="newpwd">新密码:</label>
+                                      <input type="password" class="form-control" name="newpwd" placeholder="请输入新密码" required="required" >
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="checkpwd">确认密码:</label>
+                                      <input type="password" class="form-control" name="checkpwd" placeholder="请输入确认密码" required="required" >
+                                    </div>
+                                </div>
+                                    <button type="submit" class="btn btn-primary">提交</button>&nbsp;&nbsp;<a href="{:url('person/index')}" class="btn btn-primary">返回</a>
+                                  </form>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+
+            {include file="public/footer" /}

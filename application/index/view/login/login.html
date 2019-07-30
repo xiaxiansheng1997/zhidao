@@ -1,0 +1,75 @@
+<!-- top内容开始 -->
+{include file="public/header" /}
+<!-- top内容结束 -->
+<div class="center_blank"></div>
+<!-- 公告和介绍开始  --><!-- 公告和介绍结束  -->
+<!-- 内容开始 -->
+<div class="nr">
+	
+    
+    <div class="bzz">
+    	<div class="center_gga">
+			<div class="center_gga_1">&nbsp;登&nbsp;&nbsp;陆</div>
+		</div>
+        <div class="zc_a">
+        	<div class="zc_left"><img src="__STATIC__/__IMG__/zc_2.jpg" usemap="#Map" border="0" />
+              <map name="Map" id="Map">
+                <area shape="rect" coords="67,37,98,66" href="#" />
+                <area shape="rect" coords="111,36,146,65" href="#" />
+                <area shape="rect" coords="162,37,190,66" href="#" />
+              </map>
+       	  </div>
+            <div class="zc_right">
+                <form action="{:url('web_login/login_handle')}" name='form1' method="POST">
+            	<div class="item_c">
+    				<label>用户名/邮箱</label>
+ 				</div>
+                <div class="item">
+   				  <input type="text" name="account" />
+ 				</div>
+              <div class="item_c">
+    				<label>密&nbsp;码：</label>
+ 				</div>
+                <div class="item">
+   				  <input type="password" name="password" />
+ 				</div>
+                <div class="item_c">
+                    <label>验证码：</label>
+                </div>
+              <div class="item_d">
+                <input name="verify" type="text" class="txtSearch" style="vertical-align:middle;width: 150px;height: 14px;line-height: 14px;padding: 4px;border: 1px solid #d7d7d7;" /> <img src="{:captcha_src()}" id="verify_img" alt="captcha" onclick="refreshVerify()" width="100" height="40" class="btnSearch" style="vertical-align:middle;" /> 
+              </div>
+              <div class="item_b">
+              	<a href="javascript:document.form1.submit();"><img src="__STATIC__/__IMG__/dl.jpg" /></a><a href="{:url('web_login/forgot')}">忘记密码?</a>
+              </div></form>
+          </div>
+        </div>
+    </div>
+
+    <!-- 友情链接开始 -->
+    {include file="public/footer" /}
+    <!-- 底部内容结束 -->
+    
+</div>
+<!-- 内容结束 -->
+
+<!-- alpha div -->
+<div id="maskLayer" style="display:none;">
+<iframe id="maskLayer_iframe" frameBorder=0 scrolling=no style="filter:alpha(opacity=50)"></iframe>
+<div id="alphadiv" style="filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5"></div>
+	<div id="drag">
+		<h3 id="drag_h"></h3>
+		<div id="drag_con"></div><!-- drag_con end -->
+	</div>
+</div><!-- maskLayer end -->
+</div>
+<!-- alpha div end -->
+<script>
+    function refreshVerify() {
+        var ts = Date.parse(new Date())/1000;
+        var img = document.getElementById('verify_img');
+        img.src = "/zhidao/public/index.php/captcha?id="+ts;
+    }
+</script>
+</body>
+</html>

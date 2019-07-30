@@ -1,0 +1,164 @@
+{include file="public/header" /}
+<!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <form class="app-search p-l-20" action="{:url('log/actionlog')}" method="GET">
+                    <ul class="navbar-nav mr-auto mt-md-0 " style="width: 740px;">
+                        
+                        <!-- This is  -->
+                        <!-- <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li> -->
+                        <li class="nav-item hidden-sm-down">
+                            
+                                <div class="form-group"><input type="text" name="uid" class="form-control" placeholder="用户uid" value="{$uid}"></div>
+                                
+                                <!-- <a class="srh-btn"><i class="ti-search"></i></a> -->
+                            
+                        </li>
+                        <li class="nav-item hidden-sm-down">
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name="action">
+                                    <option value="-1" {eq name="action" value="-1" }selected{/eq}>请选择</option>
+                                    <option value="1" {eq name="action" value="1" }selected{/eq}>select</option>
+                                    <option value="2" {eq name="action" value="2" }selected{/eq}>insert</option>
+                                    <option value="3" {eq name="action" value="3" }selected{/eq}>update</option>
+                                    <option value="4" {eq name="action" value="4" }selected{/eq}>delete</option>
+                                </select>
+                            </div>
+                        </li>
+                        <button type="submit" class="btn btn-info" style="height: 38px;"><i class="ti-search"></i></button>
+                    </ul>
+                    </form>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    {include file="public/head" /}
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {include file="public/left" /}
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <ol class="breadcrumb">
+                            {foreach $breadcrumb as $vo} 
+                               {if condition="$vo.href eq ''"}
+                                 <li class="breadcrumb-item">{$vo.menu}</li>
+                               {else /}
+                                 <li class="breadcrumb-item"><a href="{$vo.href}">{$vo.menu}</a></li>
+                               {/if}
+                            {/foreach}
+                        </ol>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table class="table" style="table-layout:fixed">
+                                        <thead>
+                                            <tr>
+                                                <th>#log_id</th>
+                                                <th>操作</th>
+                                                <th>操作原因</th>
+                                                <th>操作数据</th>
+                                                <th>操作用户uid</th>
+                                                <th>创建时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {foreach $info as $v}
+                                            <tr>
+                                                <td>{$v.log_id}</td>
+                                                <td>{switch name="v.action" }
+                                                        {case value="1"}select{/case}
+                                                        {case value="2"}insert{/case}
+                                                        {case value="3"}update{/case}
+                                                        {case value="4"}delete{/case}
+                                                    {/switch}</td>
+                                                <td>{$v.detail}</td>
+                                                <td class="data" data-toggle="tooltip" title="{$v.data}" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{$v.data}</td>
+                                                <td>{$v.uid}</td>
+                                                <td>{$v.create_time}</td>
+                                                <td><a href="{:url('log/deletelog/'.$v.log_id)}" onclick='return del();'>删除</a></td>
+                                            </tr>
+                                            {/foreach}
+                                        </tbody>
+                                    </table>
+                                    <nav aria-label="Page navigation">
+                                    {$info->render()}
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <script>
+//                 $(function () {
+//     $("#data").on("mouseenter",function() {
+//         if (this.offsetWidth < this.scrollWidth) {
+//             var that = this;
+//             var text = $(this).text();
+//             layer.tips(text, that,{
+//                 tips: 1,
+//                 time: 2000         //设置显示时间
+//             });
+//         }
+//     });
+// })
+function del()
+{
+  if(confirm("确定要删除吗？"))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+</script>
+            {include file="public/footer" /}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>

@@ -1,0 +1,49 @@
+{include file="public/header" /}
+<div class="center_blank"></div>
+<!-- 内容开始 -->
+<div class="nr">  
+			<div class="zzy_nr">
+				<div class="zzy">{$info.name}</div>
+                <div class="zzy_1">
+                	<ul>
+                    	<li><span>☆</span>&nbsp;{$info.create_time|strtotime|date="Y-m-d",###}</li>
+                        <li><span>¤</span>&nbsp;{$info.type}</li>
+                        <li><span>¤</span>&nbsp;交易类型：{$info.is_sell==1?'卖出':'买入'}</li>
+                    </ul>
+                </div>
+                <div class="zzy_2">
+<table width="600" border="1" cellspacing="1" cellpadding="1">
+  <tr>
+    <td>商品名称：<span>{$info.name}</span></td>
+    <td>商品价格：<span>{$info.price}</span></td>
+  </tr>
+  <tr>
+    <td>联系电话：<i>{$info.phone}</i></td>
+  </tr>
+</table>
+                </div>
+                <div class="zzy_4" style="height: 250px;">
+                    <img src="__PUBLIC__/uploads/{$info.photo}" width="250" height="250">
+                </div>
+                <div class="zzy_5">
+                	<p style="width:680px; height:40px; line-height:40px; background:#f7f7f7; color:#333; font-weight:bold; text-indent:10px; border:1px solid #ddd; margin-bottom:30px; "><span>物品介绍</span></p>
+                    {$info.detail}
+                </div>
+			</div>
+            <div class="zzy_nra">
+            	<div class="zzy_6">最新商品</div>
+                <div class="zzy_7">
+                	<ul>
+                    	{foreach $last as $vo}
+                        <li>
+                            <a href="{:url('detail/goods/'.$vo.gid)}">
+                            <p><span>{$vo.name}</span></p>
+                            <p>发布时间:{$vo.create_time}</p>
+                            </a>
+                        </li>
+                        {/foreach}
+
+                    </ul>
+                </div>
+            </div>
+            {include file="public/footer" /}

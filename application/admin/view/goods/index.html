@@ -1,0 +1,175 @@
+{include file="public/header" /}
+<!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <form class="app-search p-l-20" action="{:url('goods/index')}" method="GET">
+                    <ul class="navbar-nav mr-auto mt-md-0 " style="width: 740px;">
+                        
+                        <!-- This is  -->
+                        <!-- <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li> -->
+                        <li class="nav-item hidden-sm-down">
+                            
+                                <div class="form-group"><input type="text" name="name" class="form-control" placeholder="物品名称" value="{$name}"></div>
+                                
+                                <!-- <a class="srh-btn"><i class="ti-search"></i></a> -->
+                            
+                        </li>
+                        <li class="nav-item hidden-sm-down">
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name="type">
+                                    <option value="-1">请选择</option>
+                                    {foreach name="types" item="vo" key="k"}
+                                    <option value="{$k}" {eq name="type" value="$k" }selected{/eq}>{$vo}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </li>
+
+                        <li class="nav-item hidden-sm-down">
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name="is_sell">
+                                    <option value="-1">请选择</option>
+                                    <option value="1" {eq name="is_sell" value="1" }selected{/eq}>卖出</option>
+                                    <option value="2" {eq name="is_sell" value="2" }selected{/eq}>买入</option>
+                                </select>
+                            </div>
+                        </li>
+                        <button type="submit" class="btn btn-info" style="height: 38px;"><i class="ti-search"></i></button>
+                    </ul>
+                    </form>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    {include file="public/head" /}
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {include file="public/left" /}
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <ol class="breadcrumb">
+                            {foreach $breadcrumb as $vo} 
+                               {if condition="$vo.href eq ''"}
+                                 <li class="breadcrumb-item">{$vo.menu}</li>
+                               {else /}
+                                 <li class="breadcrumb-item"><a href="{$vo.href}">{$vo.menu}</a></li>
+                               {/if}
+                            {/foreach}
+                        </ol>
+                    </div>
+                    <div class="col-md-6 col-4 align-self-center">
+                        <a href="{:url('goods/add')}" class="btn pull-right hidden-sm-down btn-success">添加</a>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#gid</th>
+                                                <th>发布者uid</th>
+                                                <th>物品名称</th>
+                                                <th>物品类型</th>
+                                                <th>物品图片</th>
+                                                <th>物品介绍</th>
+                                                <th>物品价格</th>
+                                                <th>联系人电话</th>
+                                                <th>交易类型</th>
+                                                <th>物品状态</th>
+                                                <th>创建时间</th>
+                                                <th>更新时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {foreach $info as $v}
+                                            <tr>
+                                                <td>{$v.gid}</td>
+                                                <td>{$v.uid}</td>
+                                                <td>{$v.name}</td>
+                                                <td>{$v.type}</td>
+                                                <td><img src="__PUBLIC__/uploads/{$v.photo}" class="rounded" width="60" height="40" /> </td>
+                                                <td>{$v.detail}</td>
+                                                <td>{$v.price}</td>
+                                                <td>{$v.phone}</td>
+                                                <td>{switch name="v.is_sell" }
+                                                        {case value="1"}卖出{/case}
+                                                        {case value="2"}买入{/case}
+                                                    {/switch}</td>
+                                                <td>{switch name="v.status" }
+                                                        {case value="1"}已售/已买{/case}
+                                                        {case value="2"}未售/未买{/case}
+                                                    {/switch}</td>
+                                                <td>{$v.create_time}</td>
+                                                <td>{$v.update_time}</td>
+                                                <td><a href="{:url('goods/edit/'.$v.gid)}">编辑</a> | <a href="{:url('goods/delete/'.$v.gid)}" onclick='return del();'>删除</a> | {switch name="v.status" }
+                                                        {case value="1"}<a href="{:url('goods/enable/'.$v.gid)}">上架</a>{/case}
+                                                        {case value="2"}<a href="{:url('goods/disable/'.$v.gid)}">下架</a>{/case}
+                                                    {/switch}</td>
+                                            </tr>
+                                            {/foreach}
+                                        </tbody>
+                                    </table>
+                                    <nav aria-label="Page navigation">
+                                    {$info->render()}
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <script>
+function del()
+{
+  if(confirm("确定要删除吗？"))
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+</script>
+            {include file="public/footer" /}
+

@@ -1,0 +1,222 @@
+{include file="public/header" /}
+<!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item hidden-sm-down">
+                            
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    {include file="public/head" /}
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {include file="public/left" /}
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <ol class="breadcrumb">
+                            {foreach $breadcrumb as $vo} 
+                               {if condition="$vo.href eq ''"}
+                                 <li class="breadcrumb-item">{$vo.menu}</li>
+                               {else /}
+                                 <li class="breadcrumb-item"><a href="{$vo.href}">{$vo.menu}</a></li>
+                               {/if}
+                            {/foreach}
+                        </ol>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="container">
+                                  <h2>设置{$info['role_name']}操作权限</h2>
+                                  <!-- {foreach $menus as $v}
+                                      <div class="form-check">
+                                          <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" value="">{$v[1]}
+                                          </label>
+                                          {if condition="!empty($v['child_node'])"}
+                                             {foreach $v['child_node'] as $v1}
+                                                <div class="form-check">
+                                                  <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" value="">{$v1[1]}
+                                                  </label>
+                                                  {if condition="!empty($v1['child_node'])"}
+                                                     {foreach $v1['child_node'] as $v2}
+                                                        <div class="form-check">
+                                                          <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value="">{$v2[1]}
+                                                          </label>
+                                                      </div>
+                                                     {/foreach}
+                                                  {/if}
+                                                </div>
+                                             {/foreach}
+                                          {/if}
+                                      </div>
+                                  {/foreach} -->
+                                  <div class="tree well">
+                                    <form action="{:url('role/auth_handle')}" method="POST">
+                                        <input type="hidden" name="rid" value="{$info['rid']}">
+                                 <ul>
+                                    {foreach $menus as $v}
+                                  <li>
+                                  <span><i class="icon-folder-open"></i>{$v[1]}
+                                                            
+                                                          </span> &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="form-check-input" name="auth[]" value="{$v[0]}" {in name="v[0]" value="$info['role_permission']"}checked="checked"{/in}>
+                                  {if condition="!empty($v['child_node'])"}
+                                      <ul>
+                                       {foreach $v['child_node'] as $v1} 
+                                       <li>
+                                       <span><i class="icon-minus-sign"></i> 
+                                                            {$v1[1]}
+                                                          </span> &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="form-check-input" name="auth[]" value="{$v1[0]}" {in name="v1[0]" value="$info['role_permission']"}checked="checked"{/in}>
+                                      {if condition="!empty($v1['child_node'])"}
+                                       <ul>
+                                        {foreach $v1['child_node'] as $v2}
+                                        <li>
+                                        <span><i class="icon-leaf"></i> 
+                                                            {$v2[1]}
+                                                          </span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="form-check-input" name="auth[]" value="{$v2[0]}" {in name="v2[0]" value="$info['role_permission']"}checked="checked"{/in}>
+                                        {if condition="!empty($v2['child_node'])"}
+                                        <ul>
+                                            {foreach $v2['child_node'] as $v3}
+                                            <li><span><i class="icon-leaf"></i> 
+                                                            {$v3[1]}
+                                                          </span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="form-check-input" name="auth[]" value="{$v3[0]}" {in name="v3[0]" value="$info['role_permission']"}checked="checked"{/in}></li>
+                                            {/foreach}
+                                        </ul>
+                                        {/if}
+                                        </li>
+                                        {/foreach}
+                                       </ul>
+                                       {/if}
+                                       </li>
+                                       {/foreach}
+                                   </ul>
+                                   {/if}
+                                  </li>
+                                  {/foreach}
+                                 </ul>
+                                 <button type="submit" class="btn btn-primary">提交</button>&nbsp;&nbsp;<a href="{:url('role/index')}" class="btn btn-primary">返回</a>
+                                 </form>
+                                 </div>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            
+            {include file="public/footer" /}
+            <script type="text/javascript">
+            　　$(function(){
+             　　$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+             　　$('.tree li.parent_li > span').on('click', function (e) {
+             　　 var children = $(this).parent('li.parent_li').find(' > ul > li');
+             　　if (children.is(":visible")) {
+              　　children.hide('fast');
+              　　$(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+             　　} else {
+              　　children.show('fast');
+              　　$(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+             　　}
+             　　e.stopPropagation();
+             　　});
+             $('input[type="checkbox"]').change(function(e) {
+                test = $(this).parent();
+                if (test.find('input[type="checkbox"]').length > 1 || $(this).prop("checked") == true) {
+                    var checked = $(this).prop("checked"),
+          container = $(this).parent(),
+          siblings = container.siblings();
+
+      container.find('input[type="checkbox"]').prop({
+        indeterminate: false,
+        checked: checked
+      });
+      checkSiblings(container);
+                }
+      
+
+      function checkSiblings(el) {
+
+        var parent = el.parent().parent(),
+            all = true;
+
+        el.siblings().each(function() {
+          return all = ($(this).children('input[type="checkbox"]').prop("checked") === checked);
+        });
+
+        if (all && checked) {
+
+          parent.children('input[type="checkbox"]').prop({
+            indeterminate: false,
+            checked: checked
+          });
+
+          checkSiblings(parent);
+
+        } else if (all && !checked) {
+
+          parent.children('input[type="checkbox"]').prop("checked", checked);
+          parent.children('input[type="checkbox"]').prop("indeterminate", (parent.find('input[type="checkbox"]:checked').length > 0));
+          checkSiblings(parent);
+
+        } else {
+
+          el.parents("li").children('input[type="checkbox"]').prop({
+            indeterminate: true,
+            checked: false
+          });
+
+        }
+
+      }
+
+      
+    });
+            　　});
+             </script>
+

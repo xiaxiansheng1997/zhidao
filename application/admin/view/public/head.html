@@ -1,0 +1,15 @@
+<ul class="navbar-nav my-lg-0">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="http://localhost/zhidao/public/index.php/home/index" target="_blank">网站首页</a>
+    </li>
+</ul>
+<ul class="navbar-nav my-lg-0">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="{:url('admin/index')}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="__PUBLIC__/uploads/{$userinfo.avatar}" alt="user" class="profile-pic m-r-5" />{$userinfo.nickname}</a>
+    </li>
+</ul>
+<ul class="navbar-nav my-lg-0">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="{:url('user/logot/'.$userinfo.uid)}" >退出登录</a>
+    </li>
+</ul>

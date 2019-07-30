@@ -1,0 +1,104 @@
+<aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                   <ul class="metismenu" id="menu">
+                    {eq name="default_menu['config/default']" value="1"}
+                <li {if condition="$menu.system eq 1"}class="active"{/if}>
+                    <a href="#" aria-expanded="false">
+                        <span class="sidebar-nav-item-icon fa fa-bandcamp fa-lg"></span>
+                        <span class="sidebar-nav-item">系统配置</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul aria-expanded="false">
+                        {eq name="default_menu['config/index']" value="1"}
+                        <li>
+                            <a href="{:url('config/index')}"><span {if condition="$menu.basic eq 1"}class="text-info"{/if}>网站基本信息</span></a>
+                        </li>
+                        {/eq}
+                        {eq name="default_menu['config/edit']" value="1"}
+                        <li>
+                            <a href="{:url('config/edit')}"><span {if condition="$menu.web eq 1"}class="text-info"{/if}>网站配置</span></a>
+                        </li>
+                        {/eq}
+                        {eq name="default_menu['config/friendlink']" value="1"}
+                        <li>
+                            <a href="{:url('config/friendlink')}"><span {if condition="$menu.link eq 1"}class="text-info"{/if}>友情链接</span></a>
+                        </li>
+                        {/eq}
+                        {eq name="default_menu['config/carousel_img']" value="1"}
+                        <li>
+                            <a href="{:url('config/carousel_img')}"><span {if condition="$menu.img eq 1"}class="text-info"{/if}>轮播图管理</span></a>
+                        </li>
+                        {/eq}
+                    </ul>
+                </li>
+            {/eq}
+            {eq name="default_menu['person/index']" value="1"}
+                <li {if condition="$menu.user eq 1"}class="active"{/if}>
+                    <a href="{:url('person/index')}" aria-expanded="false">
+                        <span class="sidebar-nav-item-icon fa fa-id-card fa-lg"></span>
+                        <span class="sidebar-nav-item">个人中心</span>
+                    </a>
+                </li>
+                {/eq}
+                {eq name="default_menu['users/index']" value="1"}
+                <li {if condition="$menu.users eq 1"}class="active"{/if}>
+                    <a href="{:url('users/index')}" aria-expanded="false">
+                        <span class="sidebar-nav-item-icon fa fa-address-book fa-lg"></span>
+                        <span class="sidebar-nav-item">用户管理</span>
+                    </a>
+                </li>
+                {/eq}
+                {eq name="default_menu['log/default']" value="1"}
+                <li {if condition="$menu.log eq 1"}class="active"{/if}>
+                    <a href="#" aria-expanded="false">
+                        <span class="sidebar-nav-item-icon fa fa-calendar fa-lg"></span>
+                        <span class="sidebar-nav-item">日志管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul aria-expanded="false">
+                        {eq name="default_menu['log/loginlog']" value="1"}
+                        <li><a href="{:url('log/loginlog')}"><span {if condition="$menu.login eq 1"}class="text-info"{/if}>登录日志</span></a></li>{/eq}
+                        {eq name="default_menu['log/actionlog']" value="1"}
+                        <li><a href="{:url('log/actionlog')}"><span {if condition="$menu.action eq 1"}class="text-info"{/if}>操作日志</span></a></li>{/eq}
+                    </ul>
+                </li>
+                {/eq}
+                {eq name="default_menu['role/index']" value="1"}
+                <li  {if condition="$menu.role eq 1"}class="active"{/if}>
+                    <a href="{:url('role/index')}" aria-expanded="false">
+                        <span class="sidebar-nav-item-icon fa fa-user fa-lg"></span>
+                        <span class="sidebar-nav-item">角色管理</span>
+                    </a>
+                </li>{/eq}
+                {eq name="default_menu['goods/index']" value="1"}
+                <li {if condition="$menu.good eq 1"}class="active"{/if}>
+                    <a href="{:url('goods/index')}" aria-expanded="false">
+                        <span class="sidebar-nav-item-icon fa fa-shopping-basket fa-lg"></span>
+                        <span class="sidebar-nav-item">二手物品管理</span>
+                    </a>
+                </li>
+                {/eq}
+                {eq name="default_menu['job/index']" value="1"}
+                <li {if condition="$menu.job eq 1"}class="active"{/if}>
+                    <a href="{:url('job/index')}" aria-expanded="false">
+                        <span class="sidebar-nav-item-icon fa fa-book fa-lg"></span>
+                        <span class="sidebar-nav-item">兼职招聘管理</span>
+                    </a>
+                </li>{/eq}
+                {eq name="default_menu['news/index']" value="1"}
+                <li {if condition="$menu.news eq 1"}class="active"{/if}>
+                    <a href="{:url('news/index')}" aria-expanded="false">
+                        <span class="sidebar-nav-item-icon fa fa-search fa-lg"></span>
+                        <span class="sidebar-nav-item">资讯管理</span>
+                    </a>
+                </li>
+                {/eq}
+            </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>

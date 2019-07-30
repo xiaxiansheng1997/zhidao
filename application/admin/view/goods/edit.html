@@ -1,0 +1,138 @@
+{include file="public/header" /}
+<!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item hidden-sm-down">
+                            
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    {include file="public/head" /}
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {include file="public/left" /}
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <ol class="breadcrumb">
+                            {foreach $breadcrumb as $vo} 
+                               {if condition="$vo.href eq ''"}
+                                 <li class="breadcrumb-item">{$vo.menu}</li>
+                               {else /}
+                                 <li class="breadcrumb-item"><a href="{$vo.href}">{$vo.menu}</a></li>
+                               {/if}
+                            {/foreach}
+                        </ol>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="container">
+                                  <h2>添加</h2>
+                                  <form action="{:url('goods/edit_handle')}" enctype="multipart/form-data" method="POST">
+                                    <input type="hidden" name="gid" value="{$info.gid}">
+                                    <div class="form-group">
+                                      <label for="name">物品名称:</label>
+                                      <input type="text" class="form-control" name="name" placeholder="请输入物品名称" required="required" value="{$info.name}">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="type">物品类型:</label>
+                                      <select class="form-control" id="sel1" name="type">
+                                        {foreach name="type" item="vo"} 
+                                            <option value="{$key}" {eq name="info['type']" value="$key"}selected{/eq}>{$vo}</option>
+                                        {/foreach}
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="photo">物品图片:</label>
+                                      <img src="__PUBLIC__/uploads/{$info.photo}" alt="user" class="rounded" width="100" height="80" id="photo" /><input id="lefile" type="file" name="photo" style="display:none"> 
+                                      <!-- <input id="photoCover" class="input-large" type="text" style="height:30px;">  -->
+                                    <a class="btn btn-info" onclick="$('input[id=lefile]').click();">Browse</a> 
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="detail">物品介绍:</label>
+                                      <textarea type="text" class="form-control" name="detail">{$info.detail}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="price">物品价格:</label>
+                                      <input type="text" class="form-control" name="price" placeholder="请输入物品价格" required="required" value="{$info.price}">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="phone">联系人电话:</label>
+                                      <input type="text" class="form-control" name="phone" placeholder="请输入联系人电话" required="required" value="{$info.phone}">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="is_sell">交易类型:</label>
+                                      <select class="form-control" id="sel1" name="is_sell">
+                                            <option value="1" {eq name="info['is_sell']" value="1"}selected{/eq}>卖出</option>
+                                            <option value="2" {eq name="info['is_sell']" value="2"}selected{/eq}>买入</option>
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="status">物品状态:</label>
+                                      <select class="form-control" id="sel1" name="status">
+                                            <option value="2" {eq name="info['status']" value="2"}selected{/eq}>未售/未买</option>
+                                            <option value="1" {eq name="info['status']" value="1"}selected{/eq}>已售/已买</option>
+                                      </select>
+                                    </div>
+                                    <input type="hidden" name="__token__" value="{$Request.token}" />
+                                    <button type="submit" class="btn btn-primary">提交</button>&nbsp;&nbsp;<a href="{:url('goods/index')}" class="btn btn-primary">返回</a>
+                                  </form>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            
+            {include file="public/footer" /}
+
+<script type="text/javascript"> 
+$('input[id=lefile]').change(function() { 
+//$('#photoCover').val($(this).val()); 
+$('#photo').attr('src',URL.createObjectURL($(this)[0].files[0]));
+}); 
+</script>

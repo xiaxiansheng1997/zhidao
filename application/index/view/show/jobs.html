@@ -1,0 +1,51 @@
+{include file="public/header" /}
+<div class="center_blank"></div>
+<!-- 内容开始 -->
+<div class="nr">  
+			<div class="zzy_nr">
+				<div class="zzy">{$info.work}</div>
+                <div class="zzy_1">
+                	<ul>
+                        <li><span>♥</span>&nbsp;{$info.create_time|strtotime|date="Y-m-d",###}</li>
+                    </ul>
+                </div>
+                <div class="zzy_2">
+<table width="600" border="1" cellspacing="1" cellpadding="1">
+  <tr>
+    <td>招聘职位：<span>{$info.work}</span></td>
+    <td>薪资(元/天)：<span>{$info.salary}</span></td>
+  </tr>
+  <tr>
+    <td>招聘人数：{$info.count}人</td>
+    <td>工作天数：{$info.days}</td>
+  </tr>
+  <tr>
+    <td>工作时间：{$info.work_time}</td>
+    <td>工作地点：{$info.work_place}</td>
+  </tr>
+  <tr>
+    <td>联系电话：<i>{$info.phone}</i></td>
+  </tr>
+</table>
+                </div>
+                <div class="zzy_5">
+                	<p style="width:680px; height:40px; line-height:40px; background:#f7f7f7; color:#333; font-weight:bold; text-indent:10px; border:1px solid #ddd; margin-bottom:30px; "><span>职位详情</span></p>
+                    {$info.detail}
+                </div>
+			</div>
+            <div class="zzy_nra">
+            	<div class="zzy_6">最新发布</div>
+                <div class="zzy_7">
+                	<ul>
+                        {foreach $last as $vo}
+                        <li>
+                        	<a href="{:url('detail/jobs/'.$vo.rid)}">
+                            <p><span>{$vo.work}</span></p>
+                            <p>发布时间:{$vo.create_time}</p>
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+            {include file="public/footer" /}

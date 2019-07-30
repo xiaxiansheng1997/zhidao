@@ -1,0 +1,140 @@
+{include file="public/header" /}
+<!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item hidden-sm-down">
+                            <form class="app-search p-l-20">
+                                <input type="text" class="form-control" placeholder="搜索..."> <a class="srh-btn"><i class="ti-search"></i></a>
+                            </form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    {include file="public/head" /}
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {include file="public/left" /}
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <ol class="breadcrumb">
+                            {foreach $breadcrumb as $vo} 
+                               {if condition="$vo.href eq ''"}
+                                 <li class="breadcrumb-item">{$vo.menu}</li>
+                               {else /}
+                                 <li class="breadcrumb-item"><a href="{$vo.href}">{$vo.menu}</a></li>
+                               {/if}
+                            {/foreach}
+                        </ol>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title text-info">系统信息</h4>
+                                <div class="text-left">
+                                    <h5>服务器ip:  {$data['server_addr']}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>服务器域名:  {$data['server_name']}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>服务器端口:  {$data['server_port']}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>服务器版本:  {$data['server_version']}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>服务器操作系统:  {$data['server_systerm']}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>PHP版本:  {$data['php_version']}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>服务器当前时间:  {$data['server_time']}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>最大上传限制:  {$data['upload_max_filesize']}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>管理员人数:  {$manager}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>普通用户人数:  {$normal}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>今日登陆人数:  {$num}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title text-info">登录信息</h4>
+                                <div class="text-left">
+                                    <h5>用户uid:  {$userinfo->uid}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>用户昵称:  {$userinfo->nickname}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>用户邮箱:  {$userinfo->email}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>登录ip:  {$userinfo->last_login_ip}</h5>
+                                </div>
+                                <div class="text-left">
+                                    <h5>登录时间:  {$userinfo->last_login_time}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            
+            {include file="public/footer" /}
+

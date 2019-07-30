@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>知道--高校社区服务平台</title>
+<link rel="icon" type="image/png" sizes="16x16" href="__STATIC__/__IMG__/favicon.png">
+<link href="__STATIC__/__CSS__/select2.css" rel="stylesheet"/>
+<link rel="stylesheet" href="__STATIC__/__CSS__/style.css" />
+<script type="text/javascript" src="__STATIC__/__JS__/jquery-1.7.1.min.js"></script>
+
+<script type="text/javascript" src="__STATIC__/__JS__/search/area.js"></script>
+<script type="text/javascript" src="__STATIC__/__JS__/search/location.js"></script>
+<script type="text/javascript" src="__STATIC__/__JS__/search/select2.js"></script>
+<script type="text/javascript" src="__STATIC__/__JS__/search/select2_locale_zh-CN.js"></script>
+
+<script type="text/javascript" src="__STATIC__/__JS__/jquery.touchSlider.js"></script>
+<script type="text/javascript" src="__STATIC__/__JS__/js.js"></script>
+<script type="text/javascript" src="__STATIC__/__JS__/ks-switch.pack.js"></script>
+
+
+</head>
+
+<body class="bs_bg">
+<!-- top内容开始 -->
+<div class="top">
+    {eq name="islogin" value="1"}
+	<div class="top_a">
+    	<div class="top_a3">{$userinfo['nickname']} 您好，欢迎来到！ <span style="font-size:14px; font-weight:bold; color:#424242">知道--高校社区服务平台&nbsp;</span></div>
+    	<div class="top_a1">
+            <div class="top_a2"><a href="http://localhost/zhidao/public/admin.php/person/index">个人中心</a></div>
+        	<div class="top_a2"><a href="{:url('web_login/logot/'.$userinfo['uid'])}">退出</a></div>
+            <div class="top_a2"><a href="{:url('home/about')}">关于我们</a></div>
+        </div>
+    </div>
+    {else/}
+    <div class="top_a">
+        <div class="top_a3">您好，请先登录! <span style="font-size:14px; font-weight:bold; color:#424242">知道--高校社区服务平台&nbsp;</span></div>
+        <div class="top_a1">
+            <div class="top_a2"><a href="{:url('web_login/login')}">登录</a></div>
+            <div class="top_a2"><a href="{:url('web_login/register')}">注册</a></div>
+            <div class="top_a2"><a href="{:url('home/about')}">关于我们</a></div>
+        </div>
+    </div>
+    {/eq}
+    <div class="top_bg">
+    	<div class="top_bga">
+        	<div class="top_bga_1"></div>
+            <div class="top_bga_2">
+            	<ul>
+                	<a href="{:url('home/index')}"><li>首页</li></a>
+                    <a href="{:url('list_info/goods/0')}"><li>二手交易</li></a>    
+                    <a href="{:url('list_info/jobs')}"><li>兼职招聘</li></a>
+					<a href="{:url('list_info/news/0')}"><li>高校资讯</li></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
